@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F3FC4B821C516BB007B30E5 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FC4B721C516BB007B30E5 /* Models.swift */; };
+		9F3FC4BA21C5BFB3007B30E5 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FC4B921C5BFB3007B30E5 /* DataStore.swift */; };
 		9F4DB9B71D6917A600307E70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4DB9B61D6917A600307E70 /* AppDelegate.swift */; };
 		9F4DB9B91D6917A600307E70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4DB9B81D6917A600307E70 /* ViewController.swift */; };
 		9F4DB9BC1D6917A600307E70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F4DB9BA1D6917A600307E70 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		9F3FC4B721C516BB007B30E5 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		9F3FC4B921C5BFB3007B30E5 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		9F4DB9B31D6917A600307E70 /* Motiv8me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motiv8me.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F4DB9B61D6917A600307E70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F4DB9B81D6917A600307E70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				9F4DB9BD1D6917A600307E70 /* Motiv8me.xcdatamodeld */,
 				9F4DB9CB1D693C8800307E70 /* UIOutlinedLabel.swift */,
 				9F3FC4B721C516BB007B30E5 /* Models.swift */,
+				9F3FC4B921C5BFB3007B30E5 /* DataStore.swift */,
 			);
 			path = Motiv8me;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F4DB9B91D6917A600307E70 /* ViewController.swift in Sources */,
+				9F3FC4BA21C5BFB3007B30E5 /* DataStore.swift in Sources */,
 				9F4DB9B71D6917A600307E70 /* AppDelegate.swift in Sources */,
 				9F4DB9CC1D693C8800307E70 /* UIOutlinedLabel.swift in Sources */,
 				9F4DB9BF1D6917A600307E70 /* Motiv8me.xcdatamodeld in Sources */,
