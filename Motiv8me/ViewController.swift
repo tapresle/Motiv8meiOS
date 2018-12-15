@@ -19,11 +19,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setup tap gestures
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedMe))
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.toggleTimer))
+        doubleTap.numberOfTapsRequired = 2
+        
+        // Delay execution on single tap to make sure the user didn't double tap
+        tap.require(toFail: doubleTap)
+        tap.delaysTouchesBegan = true
+        doubleTap.delaysTouchesBegan = true
         
         // Observer for when the device orientation changes
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.transitionForOrientationSwitch), name: UIDevice.orientationDidChangeNotification, object: nil)
         
+        // Setup app label
         appLabel = UILabel()
         appLabel.text = "Motiv8me"
         appLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
@@ -35,6 +44,7 @@ class ViewController: UIViewController {
         
         // Setup image view
         changingImage.addGestureRecognizer(tap)
+        changingImage.addGestureRecognizer(doubleTap)
         changingImage.isUserInteractionEnabled = true
         changingImage.contentMode = .scaleAspectFill
         changingImage.image = UIImage()
@@ -75,6 +85,14 @@ class ViewController: UIViewController {
         quoteLabel.frame = getQuoteLabelFrame()
         appLabel.frame = getAppLabelFrame()
         self.quoteLabel.center = self.view.center
+    }
+    
+    @objc func toggleTimer() {
+        if (changeInterval.isValid) {
+            changeInterval.invalidate()
+        } else {
+            tappedMe()
+        }
     }
     
     func startTimer() {
