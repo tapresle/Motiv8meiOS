@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet var appLabel: UILabel!
     
     private var changeInterval = Timer()
+    private var useTimer = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,9 @@ class ViewController: UIViewController {
         
         // Observer for when the device orientation changes
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.transitionForOrientationSwitch), name: UIDevice.orientationDidChangeNotification, object: nil)
+        
+        // Observer for preferences/settings changing
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.settingsChanged), name: UserDefaults.didChangeNotification, object: nil)
         
         // Setup app label
         appLabel = UILabel()
@@ -95,13 +99,24 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func settingsChanged() {
+        useTimer = UserDefaults.standard.bool(forKey: "TIMER_PREF")
+        if (!useTimer) {
+            changeInterval.invalidate()
+        } else {
+            startTimer()
+        }
+    }
+    
     func startTimer() {
-        changeInterval = Timer.scheduledTimer(
-            timeInterval: 10.0,
-            target: self,
-            selector: #selector(ViewController.tappedMe),
-            userInfo: nil,
-            repeats: false)
+        if (useTimer) {
+            changeInterval = Timer.scheduledTimer(
+                timeInterval: 10.0,
+                target: self,
+                selector: #selector(ViewController.tappedMe),
+                userInfo: nil,
+                repeats: false)
+        }
     }
     
     func generateNewImageQuote(currentImageQuote: ImageQuoteModel) -> ImageQuoteModel {
