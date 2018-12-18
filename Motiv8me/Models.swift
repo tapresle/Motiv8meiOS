@@ -9,7 +9,7 @@
 import UIKit
 
 struct ImageQuoteModel {
-    var image: UIImage
-    var quote: String
-    var font: UIFont
+  var image: UIImage
+  var quote: String
+  var font: UIFont
 }

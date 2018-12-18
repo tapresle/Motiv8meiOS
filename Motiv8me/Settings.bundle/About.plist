@@ -10,7 +10,13 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Here&apos;s some more info about the app</string>
+			<string>About Motiv8me</string>
+			<key>FooterText</key>
+			<string>This project started out as a web application and grew into this app due to some curiousity about how to make an iOS app. I started a couple years ago and finally got back to it and am now releasing it!
+
+There&apos;s two gestures related to the application at this time, a single tap to rotate to the next generated image/quote/font or double tap to stop the timer running in the background if you want to stop and look at the image and quote on screen. 
+
+Images courtsey of Unsplash (https://unsplash.com)</string>
 		</dict>
 	</array>
 </dict>

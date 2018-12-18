@@ -51,7 +51,9 @@
 				9F4DB9B51D6917A600307E70 /* Motiv8me */,
 				9F4DB9B41D6917A600307E70 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 			usesTabs = 0;
 		};
 		9F4DB9B41D6917A600307E70 /* Products */ = {
@@ -300,7 +302,7 @@
 				INFOPLIST_FILE = Motiv8me/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = info.TedPresley.ted.Motiv8me;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TedPresley.Motiv8me;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -314,7 +316,7 @@
 				INFOPLIST_FILE = Motiv8me/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = info.TedPresley.ted.Motiv8me;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TedPresley.Motiv8me;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
