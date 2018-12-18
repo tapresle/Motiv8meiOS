@@ -59,7 +59,6 @@ class ViewController: UIViewController {
         quoteLabel.numberOfLines = 10;
         quoteLabel.textAlignment = .center;
         quoteLabel.frame = getQuoteLabelFrame()
-        quoteLabel.font = UIFont(name: "Noteworthy-Bold", size: 40)
         quoteLabel.center = self.view.center
         self.view.addSubview(quoteLabel)
         tappedMe()
@@ -72,14 +71,15 @@ class ViewController: UIViewController {
     
     // Set new image/quote and restart the timer
     @objc func tappedMe() {
-        let currentImageQuote = ImageQuoteModel(image: self.changingImage.image ?? UIImage(), quote: self.quoteLabel.text ?? "")
+        let currentImageQuote = ImageQuoteModel(image: self.changingImage.image ?? UIImage(), quote: self.quoteLabel.text ?? "", font: self.quoteLabel.font ?? UIFont())
         let newImageQuote = generateNewImageQuote(currentImageQuote: currentImageQuote)
         UIView.transition(with: changingImage,
                                   duration: 1,
                                   options: UIView.AnimationOptions.transitionCrossDissolve,
                                   animations: { self.changingImage.image = newImageQuote.image;
                                     self.quoteLabel.text = newImageQuote.quote;
-                                    self.quoteLabel.center = self.view.center },
+                                    self.quoteLabel.center = self.view.center;
+                                    self.quoteLabel.font = newImageQuote.font },
                                   completion: nil)
         changeInterval.invalidate()
         startTimer()
@@ -109,7 +109,7 @@ class ViewController: UIViewController {
     }
     
     func startTimer() {
-        if (useTimer) {
+        if (useTimer && !changeInterval.isValid) {
             changeInterval = Timer.scheduledTimer(
                 timeInterval: 10.0,
                 target: self,
@@ -122,15 +122,17 @@ class ViewController: UIViewController {
     func generateNewImageQuote(currentImageQuote: ImageQuoteModel) -> ImageQuoteModel {
         let quoteRand = Int(arc4random_uniform(UInt32(DataStore.quotes.count)))
         let imageRand = Int(arc4random_uniform(UInt32(DataStore.images.count)))
+        let fontRand = Int(arc4random_uniform(UInt32(DataStore.fonts.count)))
         let newImage = UIImage(named: DataStore.images[imageRand])
         let newQuote = DataStore.quotes[quoteRand]
+        let newFont = UIFont(name: DataStore.fonts[fontRand], size: 40)
         
         if (currentImageQuote.image == newImage || currentImageQuote.quote == newQuote) {
             return generateNewImageQuote(currentImageQuote: currentImageQuote)
         }
         
-        // TODO: come back and enforce default image
-        return ImageQuoteModel(image: newImage!, quote: newQuote)
+        // TODO: come back and enforce default image/font
+        return ImageQuoteModel(image: newImage!, quote: newQuote, font: newFont!)
     }
     
     func getAppLabelFrame() -> CGRect {
