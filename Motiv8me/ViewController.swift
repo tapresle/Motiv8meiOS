@@ -9,6 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
   
   @IBOutlet var changingImage: UIImageView!
   @IBOutlet var quoteLabel: UIOutlinedLabel!
