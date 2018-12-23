@@ -36,6 +36,10 @@ class ViewController: UIViewController {
     // Observer for preferences/settings changing
     NotificationCenter.default.addObserver(self, selector: #selector(ViewController.settingsChanged), name: UserDefaults.didChangeNotification, object: nil)
     
+    // Observers to stop and start timers
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.stopTimer), name: NSNotification.Name(rawValue: "stopTimer"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.startTimer), name: NSNotification.Name(rawValue: "startTimer"), object: nil)
+    
     // Setup app label
     appLabel = UILabel()
     appLabel.text = "Motiv8me"
@@ -81,7 +85,7 @@ class ViewController: UIViewController {
                         self.quoteLabel.center = self.view.center;
                         self.quoteLabel.font = newImageQuote.font },
                       completion: nil)
-    changeInterval.invalidate()
+    stopTimer()
     startTimer()
   }
   
@@ -93,7 +97,7 @@ class ViewController: UIViewController {
   
   @objc func toggleTimer() {
     if (changeInterval.isValid) {
-      changeInterval.invalidate()
+      stopTimer()
     } else {
       tappedMe()
     }
@@ -102,13 +106,13 @@ class ViewController: UIViewController {
   @objc func settingsChanged() {
     useTimer = UserDefaults.standard.bool(forKey: "TIMER_PREF")
     if (!useTimer) {
-      changeInterval.invalidate()
+      stopTimer()
     } else {
       startTimer()
     }
   }
   
-  func startTimer() {
+  @objc func startTimer() {
     if (useTimer && !changeInterval.isValid) {
       changeInterval = Timer.scheduledTimer(
         timeInterval: 10.0,
@@ -116,7 +120,15 @@ class ViewController: UIViewController {
         selector: #selector(ViewController.tappedMe),
         userInfo: nil,
         repeats: false)
+      
+      print("restarting timer")
     }
+  }
+  
+  @objc func stopTimer() {
+    changeInterval.invalidate()
+    
+    print("stopped timer")
   }
   
   func generateNewImageQuote(currentImageQuote: ImageQuoteModel) -> ImageQuoteModel {
