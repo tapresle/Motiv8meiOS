@@ -13,9 +13,9 @@ class ViewController: UIViewController {
     return true
   }
   
-  @IBOutlet var changingImage: UIImageView!
-  @IBOutlet var quoteLabel: UIOutlinedLabel!
-  @IBOutlet var appLabel: UILabel!
+  @IBOutlet private var changingImage: UIImageView!
+  @IBOutlet private var quoteLabel: UIOutlinedLabel!
+  @IBOutlet private var appLabel: UILabel!
   
   private var changeInterval = Timer()
   private var useTimer = true
@@ -23,51 +23,13 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Setup tap gestures
-    let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedMe))
-    let doubleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.toggleTimer))
-    doubleTap.numberOfTapsRequired = 2
+    setupTapGestures()
+    setupNotifications()
+    setupAppLabel()
+    setupImageView()
+    setupQuoteLabel()
     
-    // Delay execution on single tap to make sure the user didn't double tap
-    tap.require(toFail: doubleTap)
-    tap.delaysTouchesBegan = true
-    doubleTap.delaysTouchesBegan = true
-    
-    // Observer for when the device orientation changes
-    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.transitionForOrientationSwitch), name: UIDevice.orientationDidChangeNotification, object: nil)
-    
-    // Observer for preferences/settings changing
-    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.settingsChanged), name: UserDefaults.didChangeNotification, object: nil)
-    
-    // Observers to stop and start timers depending on app's context
-    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.stopTimer), name: UIApplication.didEnterBackgroundNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.startTimer), name: UIApplication.didBecomeActiveNotification, object: nil)
-    
-    // Setup app label
-    appLabel = UILabel()
-    appLabel.text = "Motiv8me"
-    appLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
-    appLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-    appLabel.frame = getAppLabelFrame()
-    appLabel.sizeToFit()
-    self.view.addSubview(appLabel)
-    
-    
-    // Setup image view
-    changingImage.addGestureRecognizer(tap)
-    changingImage.addGestureRecognizer(doubleTap)
-    changingImage.isUserInteractionEnabled = true
-    changingImage.contentMode = .scaleAspectFill
-    changingImage.image = UIImage()
-    
-    // Setup quote label
-    quoteLabel = UIOutlinedLabel()
-    quoteLabel.textColor = UIColor.white
-    quoteLabel.numberOfLines = 10;
-    quoteLabel.textAlignment = .center;
-    quoteLabel.frame = getQuoteLabelFrame()
-    quoteLabel.center = self.view.center
-    self.view.addSubview(quoteLabel)
+    // Do the thing
     tappedMe()
   }
   
@@ -77,7 +39,7 @@ class ViewController: UIViewController {
   }
   
   // Set new image/quote and restart the timer
-  @objc func tappedMe() {
+  @objc private func tappedMe() {
     let currentImageQuote = ImageQuoteModel(image: self.changingImage.image ?? UIImage(), quote: self.quoteLabel.text ?? "", font: self.quoteLabel.font ?? UIFont())
     let newImageQuote = generateNewImageQuote(currentImageQuote: currentImageQuote)
     UIView.transition(with: changingImage,
@@ -92,13 +54,13 @@ class ViewController: UIViewController {
     startTimer()
   }
   
-  @objc func transitionForOrientationSwitch() {
+  @objc private func transitionForOrientationSwitch() {
     quoteLabel.frame = getQuoteLabelFrame()
     appLabel.frame = getAppLabelFrame()
     self.quoteLabel.center = self.view.center
   }
   
-  @objc func toggleTimer() {
+  @objc private func toggleTimer() {
     if (changeInterval.isValid) {
       stopTimer()
     } else {
@@ -106,7 +68,7 @@ class ViewController: UIViewController {
     }
   }
   
-  @objc func settingsChanged() {
+  @objc private func settingsChanged() {
     useTimer = UserDefaults.standard.bool(forKey: "TIMER_PREF")
     print("Settings Changed...")
     print("useTimer: " + useTimer.description)
@@ -118,7 +80,7 @@ class ViewController: UIViewController {
     }
   }
   
-  @objc func startTimer() {
+  @objc private func startTimer() {
     if (useTimer && !changeInterval.isValid) {
       changeInterval = Timer.scheduledTimer(
         timeInterval: 10.0,
@@ -131,13 +93,65 @@ class ViewController: UIViewController {
     }
   }
   
-  @objc func stopTimer() {
+  @objc private func stopTimer() {
     changeInterval.invalidate()
     
     print("Stopped timer")
   }
   
-  func generateNewImageQuote(currentImageQuote: ImageQuoteModel) -> ImageQuoteModel {
+  private func setupTapGestures() {
+    let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedMe))
+    let doubleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.toggleTimer))
+    doubleTap.numberOfTapsRequired = 2
+    
+    // Delay execution on single tap to make sure the user didn't double tap
+    tap.require(toFail: doubleTap)
+    tap.delaysTouchesBegan = true
+    doubleTap.delaysTouchesBegan = true
+    
+    changingImage.addGestureRecognizer(tap)
+    changingImage.addGestureRecognizer(doubleTap)
+  }
+  
+  private func setupNotifications() {
+    // Observer for when the device orientation changes
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.transitionForOrientationSwitch), name: UIDevice.orientationDidChangeNotification, object: nil)
+    
+    // Observer for preferences/settings changing
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.settingsChanged), name: UserDefaults.didChangeNotification, object: nil)
+    
+    // Observers to stop and start timers depending on app's context
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.stopTimer), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.startTimer), name: UIApplication.didBecomeActiveNotification, object: nil)
+  }
+  
+  private func setupAppLabel() {
+    appLabel = UILabel()
+    appLabel.text = "Motiv8me"
+    appLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+    appLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+    appLabel.frame = getAppLabelFrame()
+    appLabel.sizeToFit()
+    self.view.addSubview(appLabel)
+  }
+  
+  private func setupImageView() {
+    changingImage.isUserInteractionEnabled = true
+    changingImage.contentMode = .scaleAspectFill
+    changingImage.image = UIImage()
+  }
+  
+  private func setupQuoteLabel() {
+    quoteLabel = UIOutlinedLabel()
+    quoteLabel.textColor = UIColor.white
+    quoteLabel.numberOfLines = 10;
+    quoteLabel.textAlignment = .center;
+    quoteLabel.frame = getQuoteLabelFrame()
+    quoteLabel.center = self.view.center
+    self.view.addSubview(quoteLabel)
+  }
+  
+  private func generateNewImageQuote(currentImageQuote: ImageQuoteModel) -> ImageQuoteModel {
     let quoteRand = Int(arc4random_uniform(UInt32(DataStore.quotes.count)))
     let imageRand = Int(arc4random_uniform(UInt32(DataStore.images.count)))
     let fontRand = Int(arc4random_uniform(UInt32(DataStore.fonts.count)))
@@ -153,11 +167,11 @@ class ViewController: UIViewController {
     return ImageQuoteModel(image: newImage!, quote: newQuote, font: newFont!)
   }
   
-  func getAppLabelFrame() -> CGRect {
+  private func getAppLabelFrame() -> CGRect {
     return CGRect(origin: CGPoint(x: UIScreen.main.bounds.width - 120, y: UIScreen.main.bounds.height - 40), size: CGSize(width: 100, height: 20))
   }
   
-  func getQuoteLabelFrame() -> CGRect {
+  private func getQuoteLabelFrame() -> CGRect {
     return CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width - 50, height: UIScreen.main.bounds.height - 50))
   }
 }
