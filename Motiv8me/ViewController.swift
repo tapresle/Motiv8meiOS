@@ -23,6 +23,11 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Fix to assign the default correctly if user doesn't open Settings before opening the app
+    if (UserDefaults.standard.value(forKey: "TIMER_PREF") == nil) {
+      UserDefaults.standard.set(true, forKey: "TIMER_PREF")
+    }
+    
     setupTapGestures()
     setupNotifications()
     setupAppLabel()
@@ -162,9 +167,8 @@ class ViewController: UIViewController {
     if (currentImageQuote.image == newImage || currentImageQuote.quote == newQuote) {
       return generateNewImageQuote(currentImageQuote: currentImageQuote)
     }
-    
-    // TODO: come back and enforce default image/font
-    return ImageQuoteModel(image: newImage!, quote: newQuote, font: newFont!)
+
+    return ImageQuoteModel(image: newImage ?? currentImageQuote.image, quote: newQuote, font: newFont ?? currentImageQuote.font)
   }
   
   private func getAppLabelFrame() -> CGRect {
