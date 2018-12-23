@@ -36,9 +36,9 @@ class ViewController: UIViewController {
     // Observer for preferences/settings changing
     NotificationCenter.default.addObserver(self, selector: #selector(ViewController.settingsChanged), name: UserDefaults.didChangeNotification, object: nil)
     
-    // Observers to stop and start timers
-    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.stopTimer), name: NSNotification.Name(rawValue: "stopTimer"), object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.startTimer), name: NSNotification.Name(rawValue: "startTimer"), object: nil)
+    // Observers to stop and start timers depending on app's context
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.stopTimer), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.startTimer), name: UIApplication.didBecomeActiveNotification, object: nil)
     
     // Setup app label
     appLabel = UILabel()
@@ -105,6 +105,9 @@ class ViewController: UIViewController {
   
   @objc func settingsChanged() {
     useTimer = UserDefaults.standard.bool(forKey: "TIMER_PREF")
+    print("Settings Changed...")
+    print("useTimer: " + useTimer.description)
+    
     if (!useTimer) {
       stopTimer()
     } else {
@@ -121,14 +124,14 @@ class ViewController: UIViewController {
         userInfo: nil,
         repeats: false)
       
-      print("restarting timer")
+      print("Starting timer")
     }
   }
   
   @objc func stopTimer() {
     changeInterval.invalidate()
     
-    print("stopped timer")
+    print("Stopped timer")
   }
   
   func generateNewImageQuote(currentImageQuote: ImageQuoteModel) -> ImageQuoteModel {
