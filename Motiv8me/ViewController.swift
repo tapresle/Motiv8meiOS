@@ -20,6 +20,8 @@ class ViewController: UIViewController {
   private var changeInterval = Timer()
   private var useTimer = true
   
+  private let INITIAL_MESSAGE = "Welcome to Motiv8me! A new quote and picture will appear every 10 seconds. You can tap once to cycle through to another quote and picture or double tap to freeze on the current view."
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -36,6 +38,14 @@ class ViewController: UIViewController {
     
     // Do the thing
     tappedMe()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    if (UserDefaults.standard.value(forKey: "INITIAL_PROMPT_1.1") == nil) {
+      showInitialPrompt()
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -177,5 +187,13 @@ class ViewController: UIViewController {
   
   private func getQuoteLabelFrame() -> CGRect {
     return CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width - 50, height: UIScreen.main.bounds.height - 50))
+  }
+  
+  private func showInitialPrompt() {
+    let alert = UIAlertController(title: "Welcome!", message: INITIAL_MESSAGE, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in 
+      UserDefaults.standard.set(true, forKey: "INITIAL_PROMPT_1.1")
+    }))
+    self.present(alert, animated: true, completion: nil)
   }
 }
