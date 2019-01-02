@@ -54,28 +54,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Works" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVb-fn-7lM">
-                                <rect key="frame" x="175.5" y="437.5" width="63" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUa-qa-sgg" userLabel="customCreationExit">
                                 <rect key="frame" x="355" y="44" width="39" height="30"/>
                                 <state key="normal" title="Close"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zq-sd-0qP">
+                                <rect key="frame" x="20" y="99" width="99" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Choose Image"/>
+                                <connections>
+                                    <action selector="chooseImage" destination="WCo-LN-mVJ" eventType="touchUpInside" id="sM0-zu-x6Z"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2f-Kl-a0Z">
+                                <rect key="frame" x="20" y="135" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem Ipsum" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lhr-8M-u1T">
+                                <rect key="frame" x="26" y="322" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quote" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6s-wt-vyV">
+                                <rect key="frame" x="26" y="297" width="47" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmp-tl-uZY">
+                                <rect key="frame" x="20" y="458" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Generate Image"/>
+                                <connections>
+                                    <action selector="generateImageQuote" destination="WCo-LN-mVJ" eventType="touchUpInside" id="5X0-SQ-GcO"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vkM-vm-lee">
+                                <rect key="frame" x="87" y="515" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="oVb-fn-7lM" firstAttribute="centerX" secondItem="P8k-Sn-ygp" secondAttribute="centerX" id="Tis-Rf-byq"/>
-                            <constraint firstItem="oVb-fn-7lM" firstAttribute="centerY" secondItem="P8k-Sn-ygp" secondAttribute="centerY" id="Yee-Ij-pRz"/>
                             <constraint firstItem="qUa-qa-sgg" firstAttribute="top" secondItem="yqG-vI-OUq" secondAttribute="bottom" id="ef4-p4-M1N"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qUa-qa-sgg" secondAttribute="trailing" id="uGO-6x-5L3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chosenImage" destination="y2f-Kl-a0Z" id="UGM-Ud-ReD"/>
+                        <outlet property="createdImage" destination="vkM-vm-lee" id="TyR-5d-1Gc"/>
                         <outlet property="customCreationExit" destination="qUa-qa-sgg" id="hO1-ba-POt"/>
+                        <outlet property="customQuote" destination="lhr-8M-u1T" id="Sel-Bh-9Zb"/>
+                        <outlet property="imageChooserButton" destination="5Zq-sd-0qP" id="mr7-WM-MV8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vG1-Vz-Kig" userLabel="First Responder" sceneMemberID="firstResponder"/>
