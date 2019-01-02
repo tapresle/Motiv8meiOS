@@ -46,6 +46,12 @@ class ViewController: UIViewController {
     if (UserDefaults.standard.value(forKey: "INITIAL_PROMPT_1.1") == nil) {
       showInitialPrompt()
     }
+    startTimer()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    stopTimer()
   }
   
   override func didReceiveMemoryWarning() {
@@ -114,6 +120,11 @@ class ViewController: UIViewController {
     print("Stopped timer")
   }
   
+  @objc private func segueToCustomCreation() {
+    let CCVC = self.storyboard?.instantiateViewController(withIdentifier: "customCreationVC")
+    self.present(CCVC!, animated: true, completion: nil)
+  }
+  
   private func setupTapGestures() {
     let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedMe))
     let doubleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.toggleTimer))
@@ -126,6 +137,10 @@ class ViewController: UIViewController {
     
     changingImage.addGestureRecognizer(tap)
     changingImage.addGestureRecognizer(doubleTap)
+    
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.segueToCustomCreation))
+    swipeUpGesture.direction = UISwipeGestureRecognizer.Direction.up
+    changingImage.addGestureRecognizer(swipeUpGesture)
   }
   
   private func setupNotifications() {
