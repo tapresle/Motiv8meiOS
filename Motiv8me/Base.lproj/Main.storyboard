@@ -14,8 +14,8 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Motiv8me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="hzS-zB-BbH"/>
+                        <viewControllerLayoutGuide type="bottom" id="xkI-z7-aSW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -47,8 +47,8 @@
             <objects>
                 <viewController storyboardIdentifier="customCreationVC" id="WCo-LN-mVJ" customClass="CustomCreationViewController" customModule="Motiv8me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yqG-vI-OUq"/>
-                        <viewControllerLayoutGuide type="bottom" id="0bk-2r-Uah"/>
+                        <viewControllerLayoutGuide type="top" id="z6c-BP-EXu"/>
+                        <viewControllerLayoutGuide type="bottom" id="pOp-T7-IT6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="P8k-Sn-ygp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -58,58 +58,31 @@
                                 <rect key="frame" x="355" y="44" width="39" height="30"/>
                                 <state key="normal" title="Close"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zq-sd-0qP">
-                                <rect key="frame" x="20" y="99" width="99" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Choose Image"/>
-                                <connections>
-                                    <action selector="chooseImage" destination="WCo-LN-mVJ" eventType="touchUpInside" id="sM0-zu-x6Z"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2f-Kl-a0Z">
-                                <rect key="frame" x="20" y="135" width="128" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="stars2" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-vL-H9M">
+                                <rect key="frame" x="0.0" y="78" width="414" height="818"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem Ipsum" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lhr-8M-u1T">
-                                <rect key="frame" x="26" y="322" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quote" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6s-wt-vyV">
-                                <rect key="frame" x="26" y="297" width="47" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your custom quote or message!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agv-RA-qdt" customClass="UIOutlinedLabel" customModule="Motiv8me" customModuleProvider="target">
+                                <rect key="frame" x="20" y="287" width="374" height="400"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmp-tl-uZY">
-                                <rect key="frame" x="20" y="458" width="109" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Generate Image"/>
-                                <connections>
-                                    <action selector="generateImageQuote" destination="WCo-LN-mVJ" eventType="touchUpInside" id="5X0-SQ-GcO"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vkM-vm-lee">
-                                <rect key="frame" x="87" y="515" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="qUa-qa-sgg" firstAttribute="top" secondItem="yqG-vI-OUq" secondAttribute="bottom" id="ef4-p4-M1N"/>
+                            <constraint firstItem="9NG-vL-H9M" firstAttribute="centerX" secondItem="P8k-Sn-ygp" secondAttribute="centerX" id="Fmg-8o-fUA"/>
+                            <constraint firstItem="9NG-vL-H9M" firstAttribute="leading" secondItem="P8k-Sn-ygp" secondAttribute="leading" id="G1T-jy-i39"/>
+                            <constraint firstAttribute="trailing" secondItem="9NG-vL-H9M" secondAttribute="trailing" id="I8a-XP-7kf"/>
+                            <constraint firstItem="9NG-vL-H9M" firstAttribute="top" secondItem="qUa-qa-sgg" secondAttribute="bottom" constant="4" id="MBJ-GY-IfZ"/>
+                            <constraint firstItem="qUa-qa-sgg" firstAttribute="top" secondItem="z6c-BP-EXu" secondAttribute="bottom" id="ef4-p4-M1N"/>
+                            <constraint firstAttribute="bottom" secondItem="9NG-vL-H9M" secondAttribute="bottom" id="rZI-nn-h3E"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qUa-qa-sgg" secondAttribute="trailing" id="uGO-6x-5L3"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="chosenImage" destination="y2f-Kl-a0Z" id="UGM-Ud-ReD"/>
-                        <outlet property="createdImage" destination="vkM-vm-lee" id="TyR-5d-1Gc"/>
                         <outlet property="customCreationExit" destination="qUa-qa-sgg" id="hO1-ba-POt"/>
-                        <outlet property="customQuote" destination="lhr-8M-u1T" id="Sel-Bh-9Zb"/>
-                        <outlet property="imageChooserButton" destination="5Zq-sd-0qP" id="mr7-WM-MV8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vG1-Vz-Kig" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,4 +90,7 @@
             <point key="canvasLocation" x="1179.7101449275362" y="334.82142857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="stars2" width="5616" height="3315"/>
+    </resources>
 </document>

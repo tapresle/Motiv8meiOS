@@ -10,10 +10,8 @@ import UIKit
 
 class CustomCreationViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
   @IBOutlet private var customCreationExit: UIButton!
-  @IBOutlet var imageChooserButton: UIButton!
   @IBOutlet var chosenImage: UIImageView!
   @IBOutlet var customQuote: UITextView!
-  @IBOutlet var createdImage: UIImageView!
     
   var imagePicker = UIImagePickerController()
   
@@ -52,31 +50,7 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
   }
   
   @IBAction func generateImageQuote() {
-    createdImage.image = textToImage(drawText: customQuote.text, inImage: chosenImage.image!, atPoint: CGPoint(x: 0, y: 0))
-  }
-  
-  func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-    let textColor = UIColor.white
-    let textFont = UIFont(name: "MarkerFelt-Wide", size: 140)!
     
-    let scale = UIScreen.main.scale
-    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-    
-    let textFontAttributes = [
-      NSAttributedString.Key.font: textFont,
-      NSAttributedString.Key.foregroundColor: textColor,
-      NSAttributedString.Key.strokeColor : UIColor.black,
-      NSAttributedString.Key.strokeWidth : -1 * 4,
-      ] as [NSAttributedString.Key : Any]
-    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-    
-    let rect = CGRect(origin: point, size: CGSize(width: image.size.width - 50, height: image.size.height - 50))
-    text.draw(in: rect, withAttributes: textFontAttributes)
-    
-    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    
-    return newImage!
   }
     
   // Implements the Delegate
