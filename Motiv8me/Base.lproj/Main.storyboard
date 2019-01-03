@@ -58,16 +58,17 @@
                                 <rect key="frame" x="355" y="44" width="39" height="30"/>
                                 <state key="normal" title="Close"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="stars2" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-vL-H9M">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="stars2" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-vL-H9M">
                                 <rect key="frame" x="0.0" y="78" width="414" height="818"/>
                             </imageView>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your custom quote or message!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agv-RA-qdt" customClass="UIOutlinedLabel" customModule="Motiv8me" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" text="Enter your custom quote or message!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Hv7-vm-N17">
                                 <rect key="frame" x="20" y="287" width="374" height="400"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -82,7 +83,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chosenImage" destination="9NG-vL-H9M" id="4rI-HD-lnm"/>
                         <outlet property="customCreationExit" destination="qUa-qa-sgg" id="hO1-ba-POt"/>
+                        <outlet property="customQuote" destination="Hv7-vm-N17" id="wzm-dE-wxI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vG1-Vz-Kig" userLabel="First Responder" sceneMemberID="firstResponder"/>

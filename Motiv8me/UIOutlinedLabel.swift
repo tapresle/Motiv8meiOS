@@ -5,8 +5,6 @@
 // Originally based on this snippet
 // https://github.com/lachezar/swift-snippets/blob/master/UIOutlinedLabel.swift
 
-import Foundation
-
 import UIKit
 
 class UIOutlinedLabel: UILabel {

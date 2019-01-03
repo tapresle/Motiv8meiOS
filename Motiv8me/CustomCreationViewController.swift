@@ -20,12 +20,28 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     
     print("loaded custom creation view")
     
-    let tap = UITapGestureRecognizer(target: self, action: #selector(CustomCreationViewController.exitView))
-    customCreationExit.addGestureRecognizer(tap)
+    let exitTap = UITapGestureRecognizer(target: self, action: #selector(CustomCreationViewController.exitView))
+    customCreationExit.addGestureRecognizer(exitTap)
     
     let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(CustomCreationViewController.exitView))
     swipeDownGesture.direction = UISwipeGestureRecognizer.Direction.down
     self.view.addGestureRecognizer(swipeDownGesture)
+    
+    let closeKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(CustomCreationViewController.closeKeyboard))
+    self.view.addGestureRecognizer(closeKeyboardTap)
+    
+    let imageChooserTap = UITapGestureRecognizer(target: self, action: #selector(CustomCreationViewController.chooseImage))
+    chosenImage.addGestureRecognizer(imageChooserTap)
+    
+    // Setup the custom quote text to look similar to pre-rendered text
+    // TODO: Allow for custom fonts
+    customQuote.attributedText = NSAttributedString(string: customQuote.text ?? "", attributes: [
+      NSAttributedString.Key.strokeColor : UIColor.black,
+      NSAttributedString.Key.strokeWidth : -1 * 4,
+      NSAttributedString.Key.foregroundColor : UIColor.white,
+      NSAttributedString.Key.font : UIFont(name: "Noteworthy-Bold", size: 40.0)!
+      ] as [NSAttributedString.Key : Any])
+    customQuote.textAlignment = NSTextAlignment.center
   }
   
   override func didReceiveMemoryWarning() {
@@ -38,11 +54,18 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     self.dismiss(animated: true, completion: nil)
   }
   
-  @IBAction func chooseImage() {
-    if (UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum)) {
+  @objc func closeKeyboard() {
+    self.view.endEditing(true)
+  }
+  
+  @objc func chooseImage() {
+    if (customQuote.isFirstResponder) {
+      print("user is currently editing the text, don't open photos but close keyboard")
+      closeKeyboard()
+    } else if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
       print("attempting to get image from library")
       imagePicker.delegate = self
-      imagePicker.sourceType = .savedPhotosAlbum
+      imagePicker.sourceType = .photoLibrary
       imagePicker.allowsEditing = false
       
       self.present(imagePicker, animated: true, completion: nil)
