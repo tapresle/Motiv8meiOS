@@ -121,8 +121,10 @@ class ViewController: UIViewController {
   }
   
   @objc private func segueToCustomCreation() {
-    let CCVC = self.storyboard?.instantiateViewController(withIdentifier: "customCreationVC")
-    self.present(CCVC!, animated: true, completion: nil)
+    if (UIDevice.current.orientation != UIDeviceOrientation.landscapeLeft && UIDevice.current.orientation != UIDeviceOrientation.landscapeRight) {
+      let CCVC = self.storyboard?.instantiateViewController(withIdentifier: "customCreationVC")
+      self.present(CCVC!, animated: true, completion: nil)
+    }
   }
   
   private func setupTapGestures() {

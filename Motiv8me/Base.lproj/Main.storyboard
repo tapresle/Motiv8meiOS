@@ -69,14 +69,23 @@
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BM3-uc-0fQ">
+                                <rect key="frame" x="20" y="44" width="79" height="30"/>
+                                <state key="normal" title="Save Image"/>
+                                <connections>
+                                    <action selector="generateImageQuote" destination="WCo-LN-mVJ" eventType="touchUpInside" id="ZDM-Ie-6Fl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="BM3-uc-0fQ" firstAttribute="leading" secondItem="P8k-Sn-ygp" secondAttribute="leadingMargin" id="2bA-Dy-sNn"/>
                             <constraint firstItem="9NG-vL-H9M" firstAttribute="centerX" secondItem="P8k-Sn-ygp" secondAttribute="centerX" id="Fmg-8o-fUA"/>
                             <constraint firstItem="9NG-vL-H9M" firstAttribute="leading" secondItem="P8k-Sn-ygp" secondAttribute="leading" id="G1T-jy-i39"/>
                             <constraint firstAttribute="trailing" secondItem="9NG-vL-H9M" secondAttribute="trailing" id="I8a-XP-7kf"/>
                             <constraint firstItem="9NG-vL-H9M" firstAttribute="top" secondItem="qUa-qa-sgg" secondAttribute="bottom" constant="4" id="MBJ-GY-IfZ"/>
+                            <constraint firstItem="BM3-uc-0fQ" firstAttribute="top" secondItem="z6c-BP-EXu" secondAttribute="bottom" id="cRR-R5-8fg"/>
                             <constraint firstItem="qUa-qa-sgg" firstAttribute="top" secondItem="z6c-BP-EXu" secondAttribute="bottom" id="ef4-p4-M1N"/>
                             <constraint firstAttribute="bottom" secondItem="9NG-vL-H9M" secondAttribute="bottom" id="rZI-nn-h3E"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qUa-qa-sgg" secondAttribute="trailing" id="uGO-6x-5L3"/>

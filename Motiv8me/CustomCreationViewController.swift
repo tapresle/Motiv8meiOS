@@ -15,6 +15,10 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     
   var imagePicker = UIImagePickerController()
   
+  override open var shouldAutorotate: Bool {
+    return false
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -42,6 +46,14 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
       NSAttributedString.Key.font : UIFont(name: "Noteworthy-Bold", size: 40.0)!
       ] as [NSAttributedString.Key : Any])
     customQuote.textAlignment = NSTextAlignment.center
+    
+    // Setup observers to move the screen when the keyboard shows up and goes away
+    NotificationCenter.default.addObserver(self, selector: #selector(CustomCreationViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(CustomCreationViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
   }
   
   override func didReceiveMemoryWarning() {
@@ -72,8 +84,66 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     }
   }
   
-  @IBAction func generateImageQuote() {
+  @objc func keyboardWillShow(notification: NSNotification) {
+    guard let userInfo = notification.userInfo else {return}
+    guard let kbSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+    let kbFrame = kbSize.cgRectValue
+    if (self.view.frame.origin.y == 0) {
+      self.view.frame.origin.y -= kbFrame.height
+    }
+  }
+  
+  @objc func keyboardWillHide() {
+    self.view.frame.origin.y = 0
+  }
+  
+  @objc func showSavedPrompt(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    var title = "Success!"
+    var message = "Image saved successfully!"
     
+    if (error != nil) {
+      title = "Uh oh!"
+      message = "We ran into an error saving your image. Please make sure you've given us permission to save to your photos."
+    }
+    
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    alertController.addAction(UIAlertAction(title: "OK", style: .default))
+    present(alertController, animated: true)
+  }
+  
+  @IBAction func generateImageQuote() {
+    let imageFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    let imageView = UIImageView(frame: imageFrame)
+    imageView.image = chosenImage.image!
+    imageView.contentMode = .scaleAspectFill
+    
+    let quoteFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: imageView.frame.size.width - 50, height: imageView.frame.size.height - 50))
+    let quoteLabel = UIOutlinedLabel(frame: quoteFrame)
+    quoteLabel.text = customQuote.text
+    quoteLabel.textColor = UIColor.white
+    quoteLabel.numberOfLines = 10;
+    quoteLabel.textAlignment = .center;
+    quoteLabel.center = imageView.center
+    quoteLabel.font = UIFont(name: "Noteworthy-Bold", size: 40)
+    
+    let appLabel = UILabel()
+    appLabel.text = "Motiv8me"
+    appLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+    appLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+    appLabel.frame = CGRect(origin: CGPoint(x: imageView.frame.size.width - 120, y: imageView.frame.size.height - 40), size: CGSize(width: 100, height: 20))
+    appLabel.sizeToFit()
+    
+    imageView.addSubview(quoteLabel)
+    imageView.addSubview(appLabel)
+    
+    UIGraphicsBeginImageContextWithOptions(imageFrame.size, true, 0.0)
+    let currentGraphicsContext = UIGraphicsGetCurrentContext()
+    imageView.layer.render(in: currentGraphicsContext!)
+    
+    let generatedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    UIImageWriteToSavedPhotosAlbum(generatedImage!, self, #selector(CustomCreationViewController.showSavedPrompt(_:didFinishSavingWithError:contextInfo:)), nil)
   }
     
   // Implements the Delegate
@@ -88,6 +158,4 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     self.dismiss(animated: true, completion: nil)
   }
-  
-  
 }
