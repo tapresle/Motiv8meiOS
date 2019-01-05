@@ -20,7 +20,7 @@ class ViewController: UIViewController {
   private var changeInterval = Timer()
   private var useTimer = true
   
-  private let INITIAL_MESSAGE = "Welcome to Motiv8me! A new quote and picture will appear every 10 seconds. You can tap once to cycle through to another quote and picture or double tap to freeze on the current view."
+  private let INITIAL_MESSAGE = "Welcome to Motiv8me! A new quote and picture will appear every 10 seconds. You can tap once to cycle through to another quote and picture or double tap to freeze on the current view. Swipe up to create your own motivational image!"
   
   override func viewDidLoad() {
     super.viewDidLoad()

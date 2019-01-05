@@ -60,6 +60,8 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     customQuote.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: chosenImage.frame.size.width - 50, height: chosenImage.frame.size.height - 50))
     customQuote.sizeToFit()
     customQuote.center = chosenImage.center
+    
+    showInitialPrompt()
   }
   
   override func didReceiveMemoryWarning() {
@@ -152,6 +154,14 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     UIGraphicsEndImageContext()
     
     UIImageWriteToSavedPhotosAlbum(generatedImage!, self, #selector(CustomCreationViewController.showSavedPrompt(_:didFinishSavingWithError:contextInfo:)), nil)
+  }
+  
+  func showInitialPrompt() {
+    let alert = UIAlertController(title: "Create your own image!", message: "Tap the message to add your own and tap the background to choose an image from your Photos. When you're ready to save what you have, tap 'Save Image' in the top left!", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+      UserDefaults.standard.set(true, forKey: "CUSTOM_PROMPT_1.1")
+    }))
+    self.present(alert, animated: true, completion: nil)
   }
     
   // Implements the Image Picker Delegate functions
