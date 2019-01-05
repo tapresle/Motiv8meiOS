@@ -58,17 +58,9 @@
                                 <rect key="frame" x="355" y="44" width="39" height="30"/>
                                 <state key="normal" title="Close"/>
                             </button>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="stars2" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-vL-H9M">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="stars2" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-vL-H9M">
                                 <rect key="frame" x="0.0" y="78" width="414" height="818"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" text="Enter your custom quote or message!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Hv7-vm-N17">
-                                <rect key="frame" x="20" y="287" width="374" height="400"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="40"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BM3-uc-0fQ">
                                 <rect key="frame" x="20" y="44" width="79" height="30"/>
                                 <state key="normal" title="Save Image"/>
@@ -76,12 +68,19 @@
                                     <action selector="generateImageQuote" destination="WCo-LN-mVJ" eventType="touchUpInside" id="ZDM-Ie-6Fl"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" scrollEnabled="NO" text="Enter your custom quote or message!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Hv7-vm-N17">
+                                <rect key="frame" x="20" y="408" width="374" height="158"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="BM3-uc-0fQ" firstAttribute="leading" secondItem="P8k-Sn-ygp" secondAttribute="leadingMargin" id="2bA-Dy-sNn"/>
-                            <constraint firstItem="9NG-vL-H9M" firstAttribute="centerX" secondItem="P8k-Sn-ygp" secondAttribute="centerX" id="Fmg-8o-fUA"/>
                             <constraint firstItem="9NG-vL-H9M" firstAttribute="leading" secondItem="P8k-Sn-ygp" secondAttribute="leading" id="G1T-jy-i39"/>
                             <constraint firstAttribute="trailing" secondItem="9NG-vL-H9M" secondAttribute="trailing" id="I8a-XP-7kf"/>
                             <constraint firstItem="9NG-vL-H9M" firstAttribute="top" secondItem="qUa-qa-sgg" secondAttribute="bottom" constant="4" id="MBJ-GY-IfZ"/>

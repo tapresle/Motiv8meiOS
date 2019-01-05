@@ -8,7 +8,8 @@
 
 import UIKit
 
-class CustomCreationViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class CustomCreationViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate,
+    UITextViewDelegate {
   @IBOutlet private var customCreationExit: UIButton!
   @IBOutlet var chosenImage: UIImageView!
   @IBOutlet var customQuote: UITextView!
@@ -37,6 +38,16 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     let imageChooserTap = UITapGestureRecognizer(target: self, action: #selector(CustomCreationViewController.chooseImage))
     chosenImage.addGestureRecognizer(imageChooserTap)
     
+    customQuote.delegate = self
+    
+    // Setup observers to move the screen when the keyboard shows up and goes away
+    NotificationCenter.default.addObserver(self, selector: #selector(CustomCreationViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(CustomCreationViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
     // Setup the custom quote text to look similar to pre-rendered text
     // TODO: Allow for custom fonts
     customQuote.attributedText = NSAttributedString(string: customQuote.text ?? "", attributes: [
@@ -46,20 +57,15 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
       NSAttributedString.Key.font : UIFont(name: "Noteworthy-Bold", size: 40.0)!
       ] as [NSAttributedString.Key : Any])
     customQuote.textAlignment = NSTextAlignment.center
-    
-    // Setup observers to move the screen when the keyboard shows up and goes away
-    NotificationCenter.default.addObserver(self, selector: #selector(CustomCreationViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(CustomCreationViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
+    customQuote.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: chosenImage.frame.size.width - 50, height: chosenImage.frame.size.height - 50))
+    customQuote.sizeToFit()
+    customQuote.center = chosenImage.center
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
-  } 
+  }
   
   @objc func exitView() {
     print("exiting custom creation view")
@@ -112,10 +118,10 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
   }
   
   @IBAction func generateImageQuote() {
-    let imageFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    let imageFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: chosenImage.frame.width, height: chosenImage.frame.height))
     let imageView = UIImageView(frame: imageFrame)
-    imageView.image = chosenImage.image!
     imageView.contentMode = .scaleAspectFill
+    imageView.image = chosenImage.image!
     
     let quoteFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: imageView.frame.size.width - 50, height: imageView.frame.size.height - 50))
     let quoteLabel = UIOutlinedLabel(frame: quoteFrame)
@@ -127,10 +133,12 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     quoteLabel.font = UIFont(name: "Noteworthy-Bold", size: 40)
     
     let appLabel = UILabel()
-    appLabel.text = "Motiv8me"
+    appLabel.text = "Made with Motiv8me"
     appLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
     appLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-    appLabel.frame = CGRect(origin: CGPoint(x: imageView.frame.size.width - 120, y: imageView.frame.size.height - 40), size: CGSize(width: 100, height: 20))
+    appLabel.frame = CGRect(origin: CGPoint(x: imageView.frame.size.width - 130, y: imageView.frame.size.height - 60), size: CGSize(width: 100, height: 20))
+    appLabel.numberOfLines = 2
+    appLabel.textAlignment = .center
     appLabel.sizeToFit()
     
     imageView.addSubview(quoteLabel)
@@ -146,7 +154,7 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     UIImageWriteToSavedPhotosAlbum(generatedImage!, self, #selector(CustomCreationViewController.showSavedPrompt(_:didFinishSavingWithError:contextInfo:)), nil)
   }
     
-  // Implements the Delegate
+  // Implements the Image Picker Delegate functions
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
       chosenImage.image = pickedImage
@@ -157,5 +165,12 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     self.dismiss(animated: true, completion: nil)
+  }
+  
+  func textViewDidChange(_ textView: UITextView) {
+    let newFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: chosenImage.frame.size.width - 50, height: chosenImage.frame.size.height - 50))
+    textView.frame = newFrame
+    textView.sizeToFit()
+    textView.center = chosenImage.center
   }
 }
