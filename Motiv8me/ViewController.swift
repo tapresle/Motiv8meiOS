@@ -20,14 +20,12 @@ class ViewController: UIViewController {
   private var changeInterval = Timer()
   private var useTimer = true
   
-  private let INITIAL_MESSAGE = "Welcome to Motiv8me! A new quote and picture will appear every 10 seconds. You can tap once to cycle through to another quote and picture or double tap to freeze on the current view. Swipe up to create your own motivational image!"
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Fix to assign the default correctly if user doesn't open Settings before opening the app
-    if (UserDefaults.standard.value(forKey: "TIMER_PREF") == nil) {
-      UserDefaults.standard.set(true, forKey: "TIMER_PREF")
+    if (UserDefaults.standard.value(forKey: TIMER_PREF_KEY) == nil) {
+      UserDefaults.standard.set(true, forKey: TIMER_PREF_KEY)
     }
     
     setupTapGestures()
@@ -43,7 +41,7 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    if (UserDefaults.standard.value(forKey: "INITIAL_PROMPT_1.1") == nil) {
+    if (UserDefaults.standard.value(forKey: INITIAL_PROMPT_VERSION) == nil) {
       showInitialPrompt()
     }
     startTimer()
@@ -90,7 +88,7 @@ class ViewController: UIViewController {
   }
   
   @objc private func settingsChanged() {
-    useTimer = UserDefaults.standard.bool(forKey: "TIMER_PREF")
+    useTimer = UserDefaults.standard.bool(forKey: TIMER_PREF_KEY)
     print("Settings Changed...")
     print("useTimer: " + useTimer.description)
     
@@ -209,7 +207,7 @@ class ViewController: UIViewController {
   private func showInitialPrompt() {
     let alert = UIAlertController(title: "Welcome!", message: INITIAL_MESSAGE, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in 
-      UserDefaults.standard.set(true, forKey: "INITIAL_PROMPT_1.1")
+      UserDefaults.standard.set(true, forKey: INITIAL_PROMPT_VERSION)
     }))
     self.present(alert, animated: true, completion: nil)
   }

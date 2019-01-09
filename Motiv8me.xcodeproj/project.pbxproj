@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F3075F321E6947300DEBDC9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3075F221E6947300DEBDC9 /* Constants.swift */; };
 		9F394C0921DC137D00FC051C /* CustomCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F394C0821DC137D00FC051C /* CustomCreationViewController.swift */; };
 		9F3FC4B821C516BB007B30E5 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FC4B721C516BB007B30E5 /* Models.swift */; };
 		9F3FC4BA21C5BFB3007B30E5 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FC4B921C5BFB3007B30E5 /* DataStore.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F3075F221E6947300DEBDC9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F394C0821DC137D00FC051C /* CustomCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCreationViewController.swift; sourceTree = "<group>"; };
 		9F3FC4B721C516BB007B30E5 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		9F3FC4B921C5BFB3007B30E5 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				9F4DB9BD1D6917A600307E70 /* Motiv8me.xcdatamodeld */,
 				9F4DB9CB1D693C8800307E70 /* UIOutlinedLabel.swift */,
 				9F3FC4B721C516BB007B30E5 /* Models.swift */,
+				9F3075F221E6947300DEBDC9 /* Constants.swift */,
 				9F3FC4B921C5BFB3007B30E5 /* DataStore.swift */,
 				9F3FC4BE21C5CD75007B30E5 /* Settings.bundle */,
 			);
@@ -165,6 +168,7 @@
 				9F394C0921DC137D00FC051C /* CustomCreationViewController.swift in Sources */,
 				9F4DB9BF1D6917A600307E70 /* Motiv8me.xcdatamodeld in Sources */,
 				9F3FC4B821C516BB007B30E5 /* Models.swift in Sources */,
+				9F3075F321E6947300DEBDC9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

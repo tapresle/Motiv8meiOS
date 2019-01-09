@@ -61,7 +61,9 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     customQuote.sizeToFit()
     customQuote.center = chosenImage.center
     
-    showInitialPrompt()
+    if (UserDefaults.standard.value(forKey: CUSTOM_CREATION_PROMPT_VERSION) == nil) {
+      showInitialPrompt()
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -107,11 +109,11 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
   
   @objc func showSavedPrompt(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
     var title = "Success!"
-    var message = "Image saved successfully!"
+    var message = IMAGE_SAVE_SUCCESS_MESSAGE
     
     if (error != nil) {
       title = "Uh oh!"
-      message = "We ran into an error saving your image. Please make sure you've given us permission to save to your photos."
+      message = IMAGE_SAVE_ERROR_MESSAGE
     }
     
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -157,9 +159,9 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
   }
   
   func showInitialPrompt() {
-    let alert = UIAlertController(title: "Create your own image!", message: "Tap the message to add your own and tap the background to choose an image from your Photos. When you're ready to save what you have, tap 'Save Image' in the top left!", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Create your own image!", message: CUSTOM_CREATION_MESSAGE, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-      UserDefaults.standard.set(true, forKey: "CUSTOM_PROMPT_1.1")
+      UserDefaults.standard.set(true, forKey: CUSTOM_CREATION_PROMPT_VERSION)
     }))
     self.present(alert, animated: true, completion: nil)
   }
