@@ -20,14 +20,12 @@ class ViewController: UIViewController {
   private var changeInterval = Timer()
   private var useTimer = true
   
-  private let INITIAL_MESSAGE = "Welcome to Motiv8me! A new quote and picture will appear every 10 seconds. You can tap once to cycle through to another quote and picture or double tap to freeze on the current view."
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Fix to assign the default correctly if user doesn't open Settings before opening the app
-    if (UserDefaults.standard.value(forKey: "TIMER_PREF") == nil) {
-      UserDefaults.standard.set(true, forKey: "TIMER_PREF")
+    if (UserDefaults.standard.value(forKey: TIMER_PREF_KEY) == nil) {
+      UserDefaults.standard.set(true, forKey: TIMER_PREF_KEY)
     }
     
     setupTapGestures()
@@ -43,9 +41,15 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    if (UserDefaults.standard.value(forKey: "INITIAL_PROMPT_1.1") == nil) {
+    if (UserDefaults.standard.value(forKey: INITIAL_PROMPT_VERSION) == nil) {
       showInitialPrompt()
     }
+    startTimer()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    stopTimer()
   }
   
   override func didReceiveMemoryWarning() {
@@ -84,7 +88,7 @@ class ViewController: UIViewController {
   }
   
   @objc private func settingsChanged() {
-    useTimer = UserDefaults.standard.bool(forKey: "TIMER_PREF")
+    useTimer = UserDefaults.standard.bool(forKey: TIMER_PREF_KEY)
     print("Settings Changed...")
     print("useTimer: " + useTimer.description)
     
@@ -114,6 +118,13 @@ class ViewController: UIViewController {
     print("Stopped timer")
   }
   
+  @objc private func segueToCustomCreation() {
+    if (UIDevice.current.orientation != UIDeviceOrientation.landscapeLeft && UIDevice.current.orientation != UIDeviceOrientation.landscapeRight) {
+      let CCVC = self.storyboard?.instantiateViewController(withIdentifier: "customCreationVC")
+      self.present(CCVC!, animated: true, completion: nil)
+    }
+  }
+  
   private func setupTapGestures() {
     let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedMe))
     let doubleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.toggleTimer))
@@ -126,6 +137,10 @@ class ViewController: UIViewController {
     
     changingImage.addGestureRecognizer(tap)
     changingImage.addGestureRecognizer(doubleTap)
+    
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.segueToCustomCreation))
+    swipeUpGesture.direction = UISwipeGestureRecognizer.Direction.up
+    changingImage.addGestureRecognizer(swipeUpGesture)
   }
   
   private func setupNotifications() {
@@ -192,7 +207,7 @@ class ViewController: UIViewController {
   private func showInitialPrompt() {
     let alert = UIAlertController(title: "Welcome!", message: INITIAL_MESSAGE, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in 
-      UserDefaults.standard.set(true, forKey: "INITIAL_PROMPT_1.1")
+      UserDefaults.standard.set(true, forKey: INITIAL_PROMPT_VERSION)
     }))
     self.present(alert, animated: true, completion: nil)
   }
