@@ -19,7 +19,33 @@
 		9F4DB9C11D6917A600307E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4DB9C01D6917A600307E70 /* Assets.xcassets */; };
 		9F4DB9C41D6917A600307E70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F4DB9C21D6917A600307E70 /* LaunchScreen.storyboard */; };
 		9F4DB9CC1D693C8800307E70 /* UIOutlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4DB9CB1D693C8800307E70 /* UIOutlinedLabel.swift */; };
+		9F8E3E5021F15D4800179D2E /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F8E3E4F21F15D4800179D2E /* Stickers.xcassets */; };
+		9F8E3E5421F15D4800179D2E /* Motiv8meStickers.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F8E3E4D21F15D4700179D2E /* Motiv8meStickers.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9F8E3E5221F15D4800179D2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F4DB9AB1D6917A600307E70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F8E3E4C21F15D4700179D2E;
+			remoteInfo = Motiv8meStickers;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9F8E3E5821F15D4800179D2E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9F8E3E5421F15D4800179D2E /* Motiv8meStickers.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9F3075F221E6947300DEBDC9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -36,6 +62,9 @@
 		9F4DB9C31D6917A600307E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F4DB9C51D6917A600307E70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F4DB9CB1D693C8800307E70 /* UIOutlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOutlinedLabel.swift; sourceTree = "<group>"; };
+		9F8E3E4D21F15D4700179D2E /* Motiv8meStickers.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Motiv8meStickers.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F8E3E4F21F15D4800179D2E /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
+		9F8E3E5121F15D4800179D2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				9F4DB9B51D6917A600307E70 /* Motiv8me */,
+				9F8E3E4E21F15D4700179D2E /* Motiv8meStickers */,
 				9F4DB9B41D6917A600307E70 /* Products */,
 			);
 			indentWidth = 2;
@@ -64,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				9F4DB9B31D6917A600307E70 /* Motiv8me.app */,
+				9F8E3E4D21F15D4700179D2E /* Motiv8meStickers.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +119,15 @@
 			path = Motiv8me;
 			sourceTree = "<group>";
 		};
+		9F8E3E4E21F15D4700179D2E /* Motiv8meStickers */ = {
+			isa = PBXGroup;
+			children = (
+				9F8E3E4F21F15D4800179D2E /* Stickers.xcassets */,
+				9F8E3E5121F15D4800179D2E /* Info.plist */,
+			);
+			path = Motiv8meStickers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -98,15 +138,32 @@
 				9F4DB9AF1D6917A600307E70 /* Sources */,
 				9F4DB9B01D6917A600307E70 /* Frameworks */,
 				9F4DB9B11D6917A600307E70 /* Resources */,
+				9F8E3E5821F15D4800179D2E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9F8E3E5321F15D4800179D2E /* PBXTargetDependency */,
 			);
 			name = Motiv8me;
 			productName = Motiv8me;
 			productReference = 9F4DB9B31D6917A600307E70 /* Motiv8me.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9F8E3E4C21F15D4700179D2E /* Motiv8meStickers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F8E3E5721F15D4800179D2E /* Build configuration list for PBXNativeTarget "Motiv8meStickers" */;
+			buildPhases = (
+				9F8E3E4B21F15D4700179D2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Motiv8meStickers;
+			productName = Motiv8meStickers;
+			productReference = 9F8E3E4D21F15D4700179D2E /* Motiv8meStickers.appex */;
+			productType = "com.apple.product-type.app-extension.messages-sticker-pack";
 		};
 /* End PBXNativeTarget section */
 
@@ -121,6 +178,11 @@
 					9F4DB9B21D6917A600307E70 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = XGAJ6AUM53;
+					};
+					9F8E3E4C21F15D4700179D2E = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = XGAJ6AUM53;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -138,6 +200,7 @@
 			projectRoot = "";
 			targets = (
 				9F4DB9B21D6917A600307E70 /* Motiv8me */,
+				9F8E3E4C21F15D4700179D2E /* Motiv8meStickers */,
 			);
 		};
 /* End PBXProject section */
@@ -151,6 +214,14 @@
 				9F4DB9C41D6917A600307E70 /* LaunchScreen.storyboard in Resources */,
 				9F4DB9C11D6917A600307E70 /* Assets.xcassets in Resources */,
 				9F4DB9BC1D6917A600307E70 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F8E3E4B21F15D4700179D2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F8E3E5021F15D4800179D2E /* Stickers.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +244,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9F8E3E5321F15D4800179D2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F8E3E4C21F15D4700179D2E /* Motiv8meStickers */;
+			targetProxy = 9F8E3E5221F15D4800179D2E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9F4DB9BA1D6917A600307E70 /* Main.storyboard */ = {
@@ -332,6 +411,53 @@
 			};
 			name = Release;
 		};
+		9F8E3E5521F15D4800179D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XGAJ6AUM53;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Motiv8meStickers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TedPresley.Motiv8me.Motiv8meStickers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F8E3E5621F15D4800179D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XGAJ6AUM53;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Motiv8meStickers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TedPresley.Motiv8me.Motiv8meStickers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -349,6 +475,15 @@
 			buildConfigurations = (
 				9F4DB9C91D6917A600307E70 /* Debug */,
 				9F4DB9CA1D6917A600307E70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F8E3E5721F15D4800179D2E /* Build configuration list for PBXNativeTarget "Motiv8meStickers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F8E3E5521F15D4800179D2E /* Debug */,
+				9F8E3E5621F15D4800179D2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
