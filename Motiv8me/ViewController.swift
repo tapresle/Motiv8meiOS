@@ -3,10 +3,11 @@
 //  Motiv8me
 //
 //  Created by Ted Presley on 8/20/16.
-//  Copyright © 2016 - 2018 Ted Presley. All rights reserved.
+//  Copyright © 2016 - 2019 Ted Presley. All rights reserved.
 //
 
 import UIKit
+import AudioToolbox
 
 class ViewController: UIViewController {
   override var prefersStatusBarHidden: Bool {
@@ -125,10 +126,33 @@ class ViewController: UIViewController {
     }
   }
   
+  @objc private func longPressed(sender: UILongPressGestureRecognizer) {
+    if (sender.state == UIGestureRecognizer.State.began) {
+      AudioServicesPlayAlertSound(1520) //Strong vibration feedback
+    }
+    
+    if (sender.state == UIGestureRecognizer.State.ended) {
+      UIGraphicsBeginImageContextWithOptions(self.view.frame.size, true, 0.0)
+      let currentGraphicsContext = UIGraphicsGetCurrentContext()
+      self.view.layer.render(in: currentGraphicsContext!)
+      
+      let generatedImage = UIGraphicsGetImageFromCurrentImageContext()
+      UIGraphicsEndImageContext()
+      
+      UIImageWriteToSavedPhotosAlbum(generatedImage!, self, #selector(ViewController.showSavedPrompt(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+  }
+  
+  @objc func showSavedPrompt(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    let alertController = generateSavedPrompt(image, didFinishSavingWithError: error, contextInfo: contextInfo)
+    present(alertController, animated: true)
+  }
+  
   private func setupTapGestures() {
     let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedMe))
     let doubleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.toggleTimer))
     doubleTap.numberOfTapsRequired = 2
+    let longPress = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.longPressed))
     
     // Delay execution on single tap to make sure the user didn't double tap
     tap.require(toFail: doubleTap)
@@ -137,6 +161,7 @@ class ViewController: UIViewController {
     
     changingImage.addGestureRecognizer(tap)
     changingImage.addGestureRecognizer(doubleTap)
+    changingImage.addGestureRecognizer(longPress)
     
     let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.segueToCustomCreation))
     swipeUpGesture.direction = UISwipeGestureRecognizer.Direction.up

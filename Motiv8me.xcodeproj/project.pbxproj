@@ -19,6 +19,7 @@
 		9F4DB9C11D6917A600307E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4DB9C01D6917A600307E70 /* Assets.xcassets */; };
 		9F4DB9C41D6917A600307E70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F4DB9C21D6917A600307E70 /* LaunchScreen.storyboard */; };
 		9F4DB9CC1D693C8800307E70 /* UIOutlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4DB9CB1D693C8800307E70 /* UIOutlinedLabel.swift */; };
+		9F54D2A72252DF0B0090CEAF /* SharedUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F54D2A62252DF0B0090CEAF /* SharedUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		9F4DB9C31D6917A600307E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F4DB9C51D6917A600307E70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F4DB9CB1D693C8800307E70 /* UIOutlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOutlinedLabel.swift; sourceTree = "<group>"; };
+		9F54D2A62252DF0B0090CEAF /* SharedUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				9F3075F221E6947300DEBDC9 /* Constants.swift */,
 				9F3FC4B921C5BFB3007B30E5 /* DataStore.swift */,
 				9F3FC4BE21C5CD75007B30E5 /* Settings.bundle */,
+				9F54D2A62252DF0B0090CEAF /* SharedUtilities.swift */,
 			);
 			path = Motiv8me;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				9F4DB9CC1D693C8800307E70 /* UIOutlinedLabel.swift in Sources */,
 				9F394C0921DC137D00FC051C /* CustomCreationViewController.swift in Sources */,
 				9F4DB9BF1D6917A600307E70 /* Motiv8me.xcdatamodeld in Sources */,
+				9F54D2A72252DF0B0090CEAF /* SharedUtilities.swift in Sources */,
 				9F3FC4B821C516BB007B30E5 /* Models.swift in Sources */,
 				9F3075F321E6947300DEBDC9 /* Constants.swift in Sources */,
 			);
