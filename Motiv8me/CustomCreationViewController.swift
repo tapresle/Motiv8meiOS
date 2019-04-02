@@ -108,16 +108,7 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
   }
   
   @objc func showSavedPrompt(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-    var title = "Success!"
-    var message = IMAGE_SAVE_SUCCESS_MESSAGE
-    
-    if (error != nil) {
-      title = "Uh oh!"
-      message = IMAGE_SAVE_ERROR_MESSAGE
-    }
-    
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    alertController.addAction(UIAlertAction(title: "OK", style: .default))
+    let alertController = generateSavedPrompt(image, didFinishSavingWithError: error, contextInfo: contextInfo)
     present(alertController, animated: true)
   }
   
