@@ -8,13 +8,16 @@
 
 import UIKit
 
-class CustomCreationViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate,
-    UITextViewDelegate {
+class CustomCreationViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
+  
   @IBOutlet private var customCreationExit: UIButton!
   @IBOutlet var chosenImage: UIImageView!
   @IBOutlet var customQuote: UITextView!
     
   var imagePicker = UIImagePickerController()
+  var fontPickerView = UIPickerView()
+  
+  var fontIndex = 0
   
   override open var shouldAutorotate: Bool {
     return false
@@ -49,17 +52,7 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     super.viewDidAppear(animated)
     
     // Setup the custom quote text to look similar to pre-rendered text
-    // TODO: Allow for custom fonts
-    customQuote.attributedText = NSAttributedString(string: customQuote.text ?? "", attributes: [
-      NSAttributedString.Key.strokeColor : UIColor.black,
-      NSAttributedString.Key.strokeWidth : -1 * 4,
-      NSAttributedString.Key.foregroundColor : UIColor.white,
-      NSAttributedString.Key.font : UIFont(name: "Noteworthy-Bold", size: 40.0)!
-      ] as [NSAttributedString.Key : Any])
-    customQuote.textAlignment = NSTextAlignment.center
-    customQuote.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: chosenImage.frame.size.width - 50, height: chosenImage.frame.size.height - 50))
-    customQuote.sizeToFit()
-    customQuote.center = chosenImage.center
+    setupQuote(fontName: DataStore.fonts[fontIndex])
     
     if (UserDefaults.standard.value(forKey: CUSTOM_CREATION_PROMPT_VERSION) == nil) {
       showInitialPrompt()
@@ -125,7 +118,7 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     quoteLabel.numberOfLines = 10;
     quoteLabel.textAlignment = .center;
     quoteLabel.center = imageView.center
-    quoteLabel.font = UIFont(name: "Noteworthy-Bold", size: 40)
+    quoteLabel.font = UIFont(name: DataStore.fonts[fontIndex], size: 40)
     
     let appLabel = UILabel()
     appLabel.text = "Made with Motiv8me"
@@ -175,5 +168,26 @@ class CustomCreationViewController: UIViewController, UINavigationControllerDele
     textView.frame = newFrame
     textView.sizeToFit()
     textView.center = chosenImage.center
+  }
+  
+  @IBAction func loopThroughFonts() {
+    fontIndex += 1
+    fontIndex = fontIndex % DataStore.fonts.count // ensure a loop occurs
+    setupQuote(fontName: DataStore.fonts[fontIndex])
+    
+    textViewDidChange(customQuote)
+  }
+  
+  func setupQuote(fontName: String) {
+    customQuote.attributedText = NSAttributedString(string: customQuote.text ?? "", attributes: [
+      NSAttributedString.Key.strokeColor : UIColor.black,
+      NSAttributedString.Key.strokeWidth : -1 * 4,
+      NSAttributedString.Key.foregroundColor : UIColor.white,
+      NSAttributedString.Key.font : UIFont(name: fontName, size: 40.0)!
+      ] as [NSAttributedString.Key : Any])
+    customQuote.textAlignment = NSTextAlignment.center
+    customQuote.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: chosenImage.frame.size.width - 50, height: chosenImage.frame.size.height - 50))
+    customQuote.sizeToFit()
+    customQuote.center = chosenImage.center
   }
 }
