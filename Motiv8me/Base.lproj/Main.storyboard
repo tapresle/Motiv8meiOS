@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -76,27 +74,27 @@
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-Cx-I7U">
-                                <rect key="frame" x="171" y="44" width="73" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-Cx-I7U">
+                                <rect key="frame" x="170.5" y="44" width="73" height="30"/>
                                 <state key="normal" title="Cycle Font"/>
                                 <connections>
                                     <action selector="loopThroughFonts" destination="WCo-LN-mVJ" eventType="touchUpInside" id="ZUb-o9-3Ck"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="9NG-vL-H9M" firstAttribute="leading" secondItem="P8k-Sn-ygp" secondAttribute="leading" id="G1T-jy-i39"/>
+                            <constraint firstItem="BM3-uc-0fQ" firstAttribute="leading" secondItem="P8k-Sn-ygp" secondAttribute="leadingMargin" id="G7U-uQ-vN6"/>
                             <constraint firstAttribute="trailing" secondItem="9NG-vL-H9M" secondAttribute="trailing" id="I8a-XP-7kf"/>
-                            <constraint firstItem="9NG-vL-H9M" firstAttribute="top" secondItem="qUa-qa-sgg" secondAttribute="bottom" constant="4" id="MBJ-GY-IfZ"/>
+                            <constraint firstItem="qUa-qa-sgg" firstAttribute="trailing" secondItem="P8k-Sn-ygp" secondAttribute="trailingMargin" id="MeE-gB-PHl"/>
                             <constraint firstItem="9NG-vL-H9M" firstAttribute="top" secondItem="BM3-uc-0fQ" secondAttribute="bottom" constant="4" id="QTN-bI-6Cp"/>
-                            <constraint firstItem="BM3-uc-0fQ" firstAttribute="leading" secondItem="P8k-Sn-ygp" secondAttribute="leadingMargin" id="Xcn-8H-D5P"/>
+                            <constraint firstItem="9NG-vL-H9M" firstAttribute="top" secondItem="qUa-qa-sgg" secondAttribute="bottom" constant="4" id="W0f-Ea-1Jb"/>
                             <constraint firstItem="BM3-uc-0fQ" firstAttribute="top" secondItem="z6c-BP-EXu" secondAttribute="bottom" id="cRR-R5-8fg"/>
-                            <constraint firstItem="qUa-qa-sgg" firstAttribute="top" secondItem="z6c-BP-EXu" secondAttribute="bottom" id="ef4-p4-M1N"/>
+                            <constraint firstItem="9NG-vL-H9M" firstAttribute="top" secondItem="OIH-Cx-I7U" secondAttribute="bottom" constant="4" id="cxp-GL-jWt"/>
+                            <constraint firstItem="OIH-Cx-I7U" firstAttribute="centerX" secondItem="P8k-Sn-ygp" secondAttribute="centerX" id="oUj-sR-y5v"/>
                             <constraint firstAttribute="bottom" secondItem="9NG-vL-H9M" secondAttribute="bottom" id="rZI-nn-h3E"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qUa-qa-sgg" secondAttribute="trailing" id="uGO-6x-5L3"/>
                         </constraints>
                     </view>
                     <connections>

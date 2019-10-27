@@ -122,6 +122,7 @@ class ViewController: UIViewController {
   @objc private func segueToCustomCreation() {
     if (UIDevice.current.orientation != UIDeviceOrientation.landscapeLeft && UIDevice.current.orientation != UIDeviceOrientation.landscapeRight) {
       let CCVC = self.storyboard?.instantiateViewController(withIdentifier: "customCreationVC")
+      CCVC?.modalPresentationStyle = UIModalPresentationStyle.fullScreen;
       self.present(CCVC!, animated: true, completion: nil)
     }
   }
